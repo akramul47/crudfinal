@@ -1,22 +1,16 @@
 <?php
 
-session_start();
+$approot = $_SERVER['DOCUMENT_ROOT']. "/crud/";
+include_once($approot. "vendor/autoload.php");
 
-$conn = new PDO("mysql:host=localhost;dbname=ecommerce", 'root', '');
-// set the PDO error mode to exception
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+use Bitm\Product;
 
-$query = "SELECT * FROM `product` WHERE is_deleted = 0";
+$_product = new product;
 
-$stmt = $conn->prepare($query);
+$products = $_product->index();
 
-$result = $stmt->execute();
 
-$products = $stmt->fetchAll();
 
-echo "<pre>";
-//print_r($products);
-echo "</pre>";
 ?>
 
 <!doctype html>
